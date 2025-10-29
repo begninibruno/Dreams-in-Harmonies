@@ -13,6 +13,7 @@ import Partnership from "./pages/Partnership";
 import Login from "./pages/Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ChatBot from "./components/ChatBot";
 import { useEffect } from "react";
 import applyTextAlternation, { removeTextAlternation } from "./lib/textAlternator";
 import { useLocation } from "wouter";
@@ -62,6 +63,7 @@ function App() {
             </main>
             <Footer />
           </div>
+          <ChatBot />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

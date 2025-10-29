@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Mail, Lock, Music } from 'lucide-react';
+import axios from 'axios';
 
 export default function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    (async () => {
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState('');
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+
+      // parsing helper to avoid exceptions on empty/non-JSON responses
       const safeParse = async (res: Response) => {
         const text = await res.text();
         if (!text) return {};
@@ -28,30 +34,27 @@ export default function Login() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, name, key: password }),
           });
-          const data = await safeParse(res);
-          if (!res.ok) throw new Error(data.error || data.message || data.text || 'Erro ao criar conta');
+          const parsed = await safeParse(res);
+          if (!res.ok) throw new Error(parsed.error || parsed.message || parsed.text || 'Erro ao criar conta');
           // após criar conta, alterna para login
           setIsSignUp(false);
-          alert(data.message || 'Conta criada com sucesso. Faça login.');
+          alert(parsed.message || 'Conta criada com sucesso. Faça login.');
         } else {
           const res = await fetch('/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, key: password }),
           });
-          const data = await safeParse(res);
-          if (!res.ok) throw new Error(data.error || data.message || data.text || 'Erro no login');
-          // salvar token e dados do usuário
-          if ((data as any).token) localStorage.setItem('token', (data as any).token);
-          console.log('Login bem-sucedido:', data);
-          // redirecionar ou atualizar estado conforme necessário
+          const parsed = await safeParse(res);
+          if (!res.ok) throw new Error(parsed.error || parsed.message || parsed.text || 'Erro no login');
+          if ((parsed as any).token) localStorage.setItem('token', (parsed as any).token);
+          console.log('Login bem-sucedido:', parsed);
         }
       } catch (err) {
         console.error(err);
-        alert((err as Error).message || 'Erro desconhecido');
+        alert(err instanceof Error ? err.message : String(err));
       }
-    })();
-  };
+    };
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-purple-light to-background py-12">

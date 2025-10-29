@@ -20,6 +20,78 @@ async function startServer() {
   app.use(cors());
   app.use(express.json());
 
+  // --- Simple vector endpoints for ChatBot (requires OPENAI_API_KEY) ---
+  const { embedText, addItem, clearStore, findNearest, allItems } = await (async () => await import('./vectorStore'))()
+
+  app.post('/api/index-kb', async (req, res) => {
+    try {
+      const apiKey = process.env.OPENAI_API_KEY
+      if (!apiKey) return res.status(500).json({ error: 'OPENAI_API_KEY not configured' })
+      const { texts } = req.body
+      if (!Array.isArray(texts)) return res.status(400).json({ error: 'texts must be an array of strings' })
+      clearStore()
+      for (let i = 0; i < texts.length; i++) {
+        const t = String(texts[i])
+        const emb = await embedText(t, apiKey)
+        addItem(String(i), t, emb)
+      }
+      res.json({ message: 'Indexed', count: texts.length })
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+    }
+  })
+
+  app.post('/api/query', async (req, res) => {
+    try {
+      const apiKey = process.env.OPENAI_API_KEY
+      if (!apiKey) return res.status(500).json({ error: 'OPENAI_API_KEY not configured' })
+      const { question, k = 3 } = req.body
+      if (!question) return res.status(400).json({ error: 'question required' })
+      const qEmb = await embedText(String(question), apiKey)
+      const hits = findNearest(qEmb, Number(k))
+      res.json({ hits })
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+    }
+  })
+
+  app.post('/api/generate', async (req, res) => {
+    try {
+      const apiKey = process.env.OPENAI_API_KEY
+      if (!apiKey) return res.status(500).json({ error: 'OPENAI_API_KEY not configured' })
+      const { question } = req.body
+      if (!question) return res.status(400).json({ error: 'question required' })
+      // retrieve top passages
+      const qEmb = await embedText(String(question), apiKey)
+      const hits = findNearest(qEmb, 3)
+      const context = hits.map(h => h.text).join('\n\n')
+
+      // Build prompt with persona and context
+      const persona = `Lucas Silva, 16 anos, estudante do ensino medio, aspirante a baterista. Seja empatico e encorajador.`
+      const prompt = `Context:\n${context}\n\nPersona:\n${persona}\n\nQuestion:\n${question}\n\nAnswer in Portuguese, be concise and helpful:`
+
+      const completionRes = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
+        body: JSON.stringify({ model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }], max_tokens: 400 })
+      })
+      if (!completionRes.ok) {
+        const t = await completionRes.text()
+        throw new Error(`OpenAI completion error: ${completionRes.status} ${t}`)
+      }
+      const jr = await completionRes.json()
+      const text = jr.choices?.[0]?.message?.content || ''
+      res.json({ answer: text, hits })
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ error: err instanceof Error ? err.message : String(err) })
+    }
+  })
+
+  // --- end vector endpoints ---
+
   // --- API routes ---
 
   // Criar usuário (registro)
