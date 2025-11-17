@@ -29,18 +29,18 @@ export default function Login() {
 
       try {
         if (isSignUp) {
-          const res = await fetch('/usuarios', {
+          const res = await fetch('https://api-users-tb6b.onrender.com/usuarios', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, name, key: password }),
           });
           const parsed = await safeParse(res);
-          if (!res.ok) throw new Error(parsed.error || parsed.message || parsed.text || 'Erro ao criar conta');
+          if (!res.ok) throw new Error(parsed.error || parsed.message || parsed.text || 'Eu sou um animal');
           // após criar conta, alterna para login
           setIsSignUp(false);
           alert(parsed.message || 'Conta criada com sucesso. Faça login.');
         } else {
-          const res = await fetch('/login', {
+          const res = await fetch('https://api-users-tb6b.onrender.com/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, key: password }),

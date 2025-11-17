@@ -1,12 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
-import { Music, Headphones, Volume2, Wind, Zap } from 'lucide-react';
+import { Music, Headphones, Volume2, Wind, Zap, Piano, Guitar, Microwave, Mic, Drum } from 'lucide-react';
 
 export default function Instruments() {
   const instruments = [
     {
       name: 'Bateria',
-      icon: <Music className="w-12 h-12" />,
+      icon: <Drum className="w-12 h-12" />,
       description: 'Aprenda ritmo e coordenacao motora com a bateria. Perfeito para iniciantes e avancados.',
       details: 'Aulas de tecnica, leitura de partitura e performance em grupo.'
     },
@@ -18,13 +18,13 @@ export default function Instruments() {
     },
     {
       name: 'Teclado',
-      icon: <Headphones className="w-12 h-12" />,
+      icon: <Piano className="w-12 h-12" />,
       description: 'Explore harmonia e melodia com o teclado. Ideal para aprender musica.',
       details: 'Aulas de piano, sintetizador e producao musical.'
     },
     {
       name: 'Violao',
-      icon: <Music className="w-12 h-12" />,
+      icon: <Guitar className="w-12 h-12" />,
       description: 'Instrumento versatil para musica classica, popular e contemporanea.',
       details: 'Aulas de fingerstyle, acordes e tecnicas de performance.'
     },
@@ -36,7 +36,7 @@ export default function Instruments() {
     },
     {
       name: 'Vocalizacao',
-      icon: <Wind className="w-12 h-12" />,
+      icon: <Mic className="w-12 h-12" />,
       description: 'Desenvolva sua voz e aprenda tecnicas vocais profissionais.',
       details: 'Aulas de respiracao, aquecimento e interpretacao musical.'
     }
