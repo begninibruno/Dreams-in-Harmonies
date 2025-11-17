@@ -1,5 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
+import { useContext } from 'react';
+import AuthContext from '@/contexts/AuthContext';
+import { useLocation } from 'wouter';
 import { Music, Headphones, Volume2, Wind, Zap, Piano, Guitar, Microwave, Mic, Drum } from 'lucide-react';
 
 export default function Instruments() {
@@ -120,15 +123,31 @@ export default function Instruments() {
               <p className="text-lg text-accent-foreground/90 mb-8 max-w-2xl mx-auto">
                 Comece sua aula gratuita hoje e descubra seu talento musical.
               </p>
-              <Link href="/login">
-                <Button size="lg" variant="secondary">
-                  Comece Agora
-                </Button>
-              </Link>
+              <CTABtn />
             </div>
           </div>
         </div>
       </section>
     </div>
+  );
+}
+
+function CTABtn() {
+  const auth = useContext(AuthContext);
+  const [, setLocation] = useLocation();
+
+  const handleClick = () => {
+    if (auth?.isAuthenticated) {
+      // se existir /profile, poderia apontar para la; por enquanto vamos para /
+      setLocation('/');
+    } else {
+      setLocation('/login');
+    }
+  };
+
+  return (
+    <Button size="lg" variant="secondary" onClick={handleClick}>
+      Comece Agora
+    </Button>
   );
 }

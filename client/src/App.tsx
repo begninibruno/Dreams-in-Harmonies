@@ -11,6 +11,7 @@ import FAQ from "./pages/FAQ";
 import Donations from "./pages/Donations";
 import Partnership from "./pages/Partnership";
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ChatBot from "./components/ChatBot";
@@ -24,6 +25,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/about"} component={About} />
       <Route path={"/instruments"} component={Instruments} />
+  <Route path={"/profile"} component={Profile} />
       <Route path={"/faq"} component={FAQ} />
       <Route path={"/donations"} component={Donations} />
       <Route path={"/partnership"} component={Partnership} />

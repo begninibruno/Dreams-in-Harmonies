@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'wouter';
 import { Menu, X, Music } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import AuthContext from '@/contexts/AuthContext';
+import { useLocation } from 'wouter';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const auth = useContext(AuthContext);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [, setLocation] = useLocation();
 
   const navLinks = [
     { href: '/', label: 'Home' },
@@ -38,13 +43,35 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Desktop Login Button */}
+        {/* Desktop Login Button or Avatar */}
         <div className="hidden md:flex items-center gap-2">
-          <Link href="/login">
-            <Button variant="outline" size="sm">
-              Login
-            </Button>
-          </Link>
+          {auth?.isAuthenticated && auth.user ? (
+            <div className="relative">
+              <button
+                className="w-8 h-8 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-semibold"
+                onClick={() => setMenuOpen((s) => !s)}
+                aria-label="Abrir menu do usuário"
+              >
+                {auth.user.initials || auth.user.name?.slice(0,2).toUpperCase()}
+              </button>
+              {menuOpen && (
+                <div className="absolute right-0 mt-2 w-40 bg-background border border-border rounded-md shadow-lg z-50">
+                  <button className="w-full text-left px-3 py-2 hover:bg-accent/10" onClick={() => { setMenuOpen(false); setLocation('/profile'); }}>
+                    Perfil
+                  </button>
+                  <button className="w-full text-left px-3 py-2 hover:bg-accent/10 text-destructive" onClick={() => { auth.logout(); setMenuOpen(false); setLocation('/'); }}>
+                    Sair
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link href="/login">
+              <Button variant="outline" size="sm">
+                Login
+              </Button>
+            </Link>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -75,11 +102,22 @@ export default function Header() {
                 </a>
               </Link>
             ))}
-            <Link href="/login">
-              <Button variant="outline" size="sm" className="w-full mt-2">
-                Login
-              </Button>
-            </Link>
+            {auth?.isAuthenticated && auth.user ? (
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-semibold">
+                  {auth.user.initials || auth.user.name?.slice(0,2).toUpperCase()}
+                </div>
+                <Button variant="outline" size="sm" className="ml-2" onClick={() => { auth.logout(); setIsOpen(false); }}>
+                  Sair
+                </Button>
+              </div>
+            ) : (
+              <Link href="/login">
+                <Button variant="outline" size="sm" className="w-full mt-2">
+                  Login
+                </Button>
+              </Link>
+            )}
           </div>
         </nav>
       )}

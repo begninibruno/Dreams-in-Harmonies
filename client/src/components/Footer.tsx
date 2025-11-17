@@ -49,19 +49,19 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="w-4 h-4 text-accent" />
-                <a href="mailto:contato@dreamsinharmonies.com" className="hover:text-accent transition-colors">
-                  contato@dreamsinharmonies.com
+                <a href="mailto:@dreamsinharmonies.com" className="hover:text-accent transition-colors">
+                  @dreamsinharmonies.com
                 </a>
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Phone className="w-4 h-4 text-accent" />
                 <a href="tel:+5511999999999" className="hover:text-accent transition-colors">
-                  +55 (11) 99999-9999
+                  +55 (19) 96536-2584
                 </a>
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 text-accent" />
-                <span>São Paulo, SP</span>
+                <span>Americana, SP</span>
               </li>
             </ul>
           </div>

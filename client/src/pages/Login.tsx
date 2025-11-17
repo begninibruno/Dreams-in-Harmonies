@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Mail, Lock, Music } from 'lucide-react';
-import axios from 'axios';
+import AuthContext from '@/contexts/AuthContext';
+import { useLocation } from 'wouter';
 
 export default function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -13,7 +14,10 @@ export default function Login() {
 
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
-    const handleSubmit = async (e: React.FormEvent) => {
+  const auth = useContext(AuthContext);
+  const [, setLocation] = useLocation();
+
+  const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
 
       // parsing helper to avoid exceptions on empty/non-JSON responses
@@ -29,26 +33,16 @@ export default function Login() {
 
       try {
         if (isSignUp) {
-          const res = await fetch('https://api-users-tb6b.onrender.com/usuarios', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, name, key: password }),
-          });
-          const parsed = await safeParse(res);
-          if (!res.ok) throw new Error(parsed.error || parsed.message || parsed.text || 'Eu sou um animal');
+          // use context signup helper
+          await auth.signup(name, email, password);
           // após criar conta, alterna para login
           setIsSignUp(false);
-          alert(parsed.message || 'Conta criada com sucesso. Faça login.');
+          setLocation('/login');
         } else {
-          const res = await fetch('https://api-users-tb6b.onrender.com/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, key: password }),
-          });
-          const parsed = await safeParse(res);
-          if (!res.ok) throw new Error(parsed.error || parsed.message || parsed.text || 'Erro no login');
-          if ((parsed as any).token) localStorage.setItem('token', (parsed as any).token);
-          console.log('Login bem-sucedido:', parsed);
+          // use context login helper
+          await auth.login(email, password);
+          // redireciona para home
+          setLocation('/');
         }
       } catch (err) {
         console.error(err);

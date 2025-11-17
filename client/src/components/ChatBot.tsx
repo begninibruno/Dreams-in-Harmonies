@@ -101,7 +101,7 @@ export default function ChatBot() {
     setInput('')
     setTyping(true)
     // try server generate first
-    fetch('/api/generate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: text }) })
+    fetch('http://localhost:3001/api/generate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: text }) })
       .then(async r => {
         if (!r.ok) throw new Error('no-server')
         const j = await r.json()
