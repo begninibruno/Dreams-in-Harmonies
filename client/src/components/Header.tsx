@@ -14,7 +14,9 @@ export default function Header() {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'Sobre Nós' },
-    { href: '/instruments', label: 'Instrumentos' },
+  { href: '/instruments', label: 'Instrumentos' },
+  // Cursos só aparecem para usuários autenticados
+  ...(auth?.isAuthenticated ? [{ href: '/courses', label: 'Cursos' }] : []),
     { href: '/faq', label: 'FAQ' },
     { href: '/donations', label: 'Doações' },
     { href: '/partnership', label: 'Parceria' },
