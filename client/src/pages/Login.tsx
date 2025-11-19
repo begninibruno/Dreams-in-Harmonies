@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Mail, Lock, Music } from 'lucide-react';
 import AuthContext from '@/contexts/AuthContext';
@@ -15,7 +15,18 @@ export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const auth = useContext(AuthContext);
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
+  const [infoMsg, setInfoMsg] = useState('');
+
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+      const msg = params.get('msg');
+      if (msg) setInfoMsg(decodeURIComponent(msg));
+    } catch (e) {
+      // ignore
+    }
+  }, [location]);
 
   const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
@@ -60,9 +71,14 @@ export default function Login() {
               <Music className="w-8 h-8 text-accent" />
               <h1 className="text-2xl font-bold text-foreground">Dreams in Harmonies</h1>
             </div>
-            <p className="text-muted-foreground">
-              {isSignUp ? 'Crie sua conta' : 'Acesse sua conta'}
-            </p>
+              <p className="text-muted-foreground">
+                {isSignUp ? 'Crie sua conta' : 'Acesse sua conta'}
+              </p>
+              {infoMsg && (
+                <div className="mt-4 p-3 rounded-md bg-accent/10 text-sm text-accent-foreground">
+                  {infoMsg}
+                </div>
+              )}
           </div>
 
           {/* Form */}

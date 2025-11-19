@@ -220,6 +220,78 @@ async function startServer() {
 
   // --- Fim das rotas de API ---
 
+  // --- Enrollment endpoints (por usuário) ---
+  function getTokenFromHeader(req: any) {
+    const h = req.headers?.authorization || req.headers?.Authorization;
+    if (!h) return null;
+    const parts = String(h).split(' ');
+    if (parts.length !== 2) return null;
+    return parts[1];
+  }
+
+  function verifyToken(token: string | null) {
+    try {
+      if (!token) return null;
+      const payload = jwt.verify(token, process.env.JWT_SECRET || 'segredo_super_secreto') as any;
+      return payload;
+    } catch (err) {
+      return null;
+    }
+  }
+
+  // lista inscrições do usuário autenticado
+  app.get('/api/enrollments', async (req, res) => {
+    try {
+      const token = getTokenFromHeader(req);
+      const payload = verifyToken(token);
+      if (!payload || !payload.userId) return res.status(401).json({ error: 'Unauthorized' });
+      const userId = payload.userId as number;
+      const items = await prisma.enrollment.findMany({ where: { userId }, select: { courseSlug: true } });
+      return res.json({ enrollments: items.map((i) => i.courseSlug) });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
+    }
+  });
+
+  // criar inscrição
+  app.post('/api/enrollments', async (req, res) => {
+    try {
+      const token = getTokenFromHeader(req);
+      const payload = verifyToken(token);
+      if (!payload || !payload.userId) return res.status(401).json({ error: 'Unauthorized' });
+      const userId = payload.userId as number;
+      const { courseSlug } = req.body;
+      if (!courseSlug) return res.status(400).json({ error: 'courseSlug required' });
+      // upsert-like behaviour: ignore if already exists
+      const existing = await prisma.enrollment.findUnique({ where: { userId_courseSlug: { userId, courseSlug } } }).catch(() => null);
+      if (existing) return res.status(200).json({ message: 'Already enrolled' });
+      const created = await prisma.enrollment.create({ data: { userId, courseSlug } });
+      return res.status(201).json({ message: 'Enrolled', enrollment: { courseSlug: created.courseSlug } });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
+    }
+  });
+
+  // remover inscrição
+  app.delete('/api/enrollments/:slug', async (req, res) => {
+    try {
+      const token = getTokenFromHeader(req);
+      const payload = verifyToken(token);
+      if (!payload || !payload.userId) return res.status(401).json({ error: 'Unauthorized' });
+      const userId = payload.userId as number;
+      const slug = String(req.params.slug || '');
+      await prisma.enrollment.deleteMany({ where: { userId, courseSlug: slug } });
+      return res.json({ message: 'Unenrolled' });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
+    }
+  });
+
+  // --- fim endpoints de enrollment ---
+
   // Serve static files from dist/public in production
   const staticPath =
     process.env.NODE_ENV === 'production'
@@ -230,15 +302,14 @@ async function startServer() {
 
   // Handle client-side routing - serve index.html for all non-API routes
   app.get('*', (req, res) => {
-    // If the request starts with /usuarios or /login, skip and let API handle it
-    if (req.path.startsWith('/usuarios') || req.path === '/login') {
-      return res.status(404).json({ error: 'Not found' });
-    }
-
+    // Serve the SPA entry for any non-API route so client-side routing works.
+    // Previously this returned 404 for `/usuarios` and `/login`, which caused
+    // direct navigations or refreshes on those client routes to fail.
     res.sendFile(path.join(staticPath, 'index.html'));
   });
 
-  const port = process.env.PORT || 3000;
+  // Use 3001 as the default backend port to avoid colliding with Vite dev server (which uses 3000).
+  const port = process.env.PORT || 3001;
 
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);

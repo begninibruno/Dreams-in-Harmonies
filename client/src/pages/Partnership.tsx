@@ -10,7 +10,7 @@ export default function Partnership() {
           <div className="max-w-3xl mx-auto text-center animate-fadeInUp">
             <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">Seja Nosso <span className="text-accent">Parceiro</span></h1>
             <p className="text-xl text-muted-foreground">
-              Investidores e empresas que acreditam no poder transformador da musica.
+              Investidores e empresas que acreditam no poder transformador da música.
             </p>
           </div>
         </div>
@@ -20,9 +20,9 @@ export default function Partnership() {
       <section className="py-20">
         <div className="container">
           <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Por que Investir em Musica?</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Por que Investir em Música?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Transforme vidas enquanto constroi um legado de impacto social e cultural.
+              Transforme vidas enquanto constrói um legado de impacto social e cultural.
             </p>
           </div>
 
@@ -36,16 +36,16 @@ export default function Partnership() {
               {
                 icon: <TrendingUp className="w-8 h-8" />,
                 title: 'Retorno Mensuravel',
-                description: 'Acompanhe o impacto de seu investimento atraves de relatorios detalhados.'
+                description: 'Acompanhe o impacto de seu investimento através de relatorios detalhados.'
               },
               {
                 icon: <Lightbulb className="w-8 h-8" />,
-                title: 'Inovacao',
+                title: 'Inovação',
                 description: 'Seja parte de uma iniciativa inovadora que reimagina a educacao musical.'
               },
               {
                 icon: <Handshake className="w-8 h-8" />,
-                title: 'Parcerias Estrategicas',
+                title: 'Parcerias Estrátegicas',
                 description: 'Conecte-se com outras empresas e investidores alinhados com seus valores.'
               }
             ].map((benefit, index) => (
@@ -69,7 +69,7 @@ export default function Partnership() {
       <section className="py-20 bg-card border-y border-border">
         <div className="container">
           <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Niveis de Parceria</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Níveis de Parceria</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -91,7 +91,7 @@ export default function Partnership() {
                   'Todos os beneficios Bronze',
                   'Reunioes mensais',
                   'Influencia em decisoes',
-                  'Oportunidades de midia'
+                  'Oportunidades de mídia'
                 ],
                 featured: true
               },
@@ -102,7 +102,7 @@ export default function Partnership() {
                   'Todos os beneficios Prata',
                   'Assento no conselho',
                   'Nomeacao de bolsas',
-                  'Parceria estrategica'
+                  'Parceria estrátegica'
                 ]
               }
             ].map((tier, index) => (
@@ -150,7 +150,7 @@ export default function Partnership() {
       <section className="py-20">
         <div className="container">
           <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Historias de Sucesso</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Histórias de Sucesso</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Conheca as vidas transformadas pelo apoio de nossos parceiros.
             </p>

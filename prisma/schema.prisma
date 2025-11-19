@@ -13,3 +13,13 @@ model User {
   name  String?
   key   String
 }
+
+model Enrollment {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  courseSlug String
+  createdAt  DateTime @default(now())
+
+  @@unique([userId, courseSlug])
+}

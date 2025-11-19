@@ -11,7 +11,7 @@ export default function About() {
           <div className="max-w-3xl mx-auto text-center animate-fadeInUp">
             <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">Sobre <span className="text-accent">Dreams in Harmonies</span></h1>
             <p className="text-xl text-muted-foreground">
-              Uma iniciativa dedicada a democratizar o acesso a educacao musical e transformar vidas atraves da musica.
+              Uma iniciativa dedicada a democratizar o acesso à educação musical e transformar vidas através da música.
             </p>
           </div>
         </div>
@@ -22,15 +22,15 @@ export default function About() {
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-slideInLeft">
-              <h2 className="text-4xl font-bold text-foreground mb-6">Nossa Historia</h2>
+              <h2 className="text-4xl font-bold text-foreground mb-6">Nossa História</h2>
               <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-                Dreams in Harmonies nasceu da conviccao de que a musica e um direito, nao um privilegio. Observamos muitos jovens talentosos como Lucas Silva, que sonham em ser musicos profissionais, mas enfrentam barreiras financeiras.
+                Dreams in Harmonies nasceu da convicção de que a música é um direito, não um privilégio. Observamos muitos jovens talentosos como Lucas Silva, que sonham em ser músicos profissionais, mas enfrentam barreiras financeiras.
               </p>
               <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-                Decidimos criar uma plataforma que oferecesse educacao musical acessivel, com professores qualificados, instrumentos disponiveis e uma comunidade de apoio.
+                Decidimos criar uma plataforma que oferecesse educação musical acessível, com professores qualificados, instrumentos disponíveis e uma comunidade de apoio.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Hoje, somos uma comunidade crescente de educadores, musicos profissionais e investidores que acreditam no poder transformador da musica.
+                Hoje, somos uma comunidade crescente de educadores, músicos profissionais e investidores que acreditam no poder transformador da música.
               </p>
             </div>
 
@@ -40,8 +40,8 @@ export default function About() {
                 <div className="relative w-full h-full bg-gradient-to-br from-accent/20 to-accent/10 rounded-3xl flex items-center justify-center border border-accent/30 backdrop-blur-sm">
                   <div className="text-center">
                     <Heart className="w-32 h-32 text-accent mx-auto mb-4 animate-pulse" />
-                    <p className="text-accent font-semibold">Missao Social</p>
-                    <p className="text-accent/70 text-sm">Educacao para Todos</p>
+                    <p className="text-accent font-semibold">Missão Social</p>
+                    <p className="text-accent/70 text-sm">Educação para Todos</p>
                   </div>
                 </div>
               </div>
@@ -54,7 +54,7 @@ export default function About() {
       <section className="py-20 bg-card border-y border-border">
         <div className="container">
           <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Nossa Missao, Visao e Valores</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Nossa Missão, Visão e Valores</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -100,7 +100,7 @@ export default function About() {
           <div className="text-center animate-fadeInUp">
             <h2 className="text-4xl font-bold text-accent-foreground mb-4">Quer fazer parte dessa jornada?</h2>
             <p className="text-lg text-accent-foreground/90 mb-8 max-w-2xl mx-auto">
-              Junte-se a nos como aluno, professor, investidor ou voluntario.
+              Junte-se a nós como aluno, professor, investidor ou voluntário.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -111,7 +111,7 @@ export default function About() {
               </Link>
               <Link href="/donations">
                 <Button size="lg" variant="outline" className="text-accent-foreground border-accent-foreground hover:bg-accent-foreground/10">
-                  Apoiar com Doacao
+                  Apoiar com Doação
                 </Button>
               </Link>
             </div>

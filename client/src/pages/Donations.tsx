@@ -38,9 +38,9 @@ export default function Donations() {
       <section className="py-20 bg-gradient-to-br from-background via-purple-light to-background">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center animate-fadeInUp">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">Apoie Nossa <span className="text-accent">Missao</span></h1>
+            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">Apoie Nossa <span className="text-accent">Missão</span></h1>
             <p className="text-xl text-muted-foreground">
-              Sua doacao transforma vidas. Ajude jovens talentosos a realizar seus sonhos musicais.
+              Sua doação transforma vidas. Ajude jovens talentosos a realizar seus sonhos musicais.
             </p>
           </div>
         </div>
@@ -107,6 +107,7 @@ export default function Donations() {
                     </li>
                   ))}
                 </ul>
+                
                 <Button
                   className={`w-full ${
                     index === 1
@@ -127,9 +128,9 @@ export default function Donations() {
       <section className="py-20 bg-card border-y border-border">
         <div className="container max-w-2xl text-center animate-fadeInUp">
           <Heart className="w-16 h-16 text-accent mx-auto mb-4" />
-          <h2 className="text-4xl font-bold text-foreground mb-4">Doacao Unica</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-4">Doação Unica</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Prefere fazer uma doacao unica? Escolha o valor que faz sentido para voce.
+            Prefere fazer uma doação unica? Escolha o valor que faz sentido para voce.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {['R$ 50', 'R$ 100', 'R$ 250', 'Outro'].map((value, i) => (
@@ -143,7 +144,7 @@ export default function Donations() {
             ))}
           </div>
           <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-            Fazer Doacao
+            Fazer Doação
           </Button>
         </div>
       </section>
@@ -159,7 +160,7 @@ export default function Donations() {
             {[
               {
                 title: 'Transformacao de Vidas',
-                description: 'Suas doacoes permitem que jovens talentosos como Lucas Silva realizem seus sonhos musicais.'
+                description: 'Suas doação permitem que jovens talentosos como Lucas Silva realizem seus sonhos musicais.'
               },
               {
                 title: 'Impacto Comunitario',
@@ -167,11 +168,11 @@ export default function Donations() {
               },
               {
                 title: 'Transparencia Total',
-                description: 'Saiba exatamente como sua doacao e utilizada atraves de relatorios detalhados.'
+                description: 'Saiba exatamente como sua doação e utilizada atraves de relatorios detalhados.'
               },
               {
                 title: 'Deducao Fiscal',
-                description: 'Suas doacoes podem ser dedutiveis em sua declaracao de imposto de renda.'
+                description: 'Suas doação podem ser dedutiveis em sua declaracao de imposto de renda.'
               }
             ].map((reason, index) => (
               <div

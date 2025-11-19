@@ -69,7 +69,7 @@ export default function Header() {
             </div>
           ) : (
             <Link href="/login">
-              <Button variant="outline" size="sm">
+              <Button size="sm" className="bg-accent text-accent-foreground transition-transform duration-150 transform-gpu hover:scale-105">
                 Login
               </Button>
             </Link>
@@ -115,7 +115,7 @@ export default function Header() {
               </div>
             ) : (
               <Link href="/login">
-                <Button variant="outline" size="sm" className="w-full mt-2">
+                <Button size="sm" className="w-full mt-2 bg-accent text-accent-foreground transition-transform duration-150 transform-gpu hover:scale-105">
                   Login
                 </Button>
               </Link>

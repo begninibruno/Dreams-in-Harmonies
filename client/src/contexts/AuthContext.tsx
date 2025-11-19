@@ -57,7 +57,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [token]);
 
   const login = async (email: string, password: string) => {
-    const res = await fetch('https://api-users-tb6b.onrender.com/login', {
+    const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+    const res = await fetch(`${API_BASE}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, key: password }),
@@ -80,7 +81,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const signup = async (name: string, email: string, password: string) => {
-    const res = await fetch('https://api-users-tb6b.onrender.com/usuarios', {
+    const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+    const res = await fetch(`${API_BASE}/usuarios`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, name, key: password }),
