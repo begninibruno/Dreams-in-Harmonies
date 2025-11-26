@@ -35,17 +35,17 @@ export default function Partnership() {
               },
               {
                 icon: <TrendingUp className="w-8 h-8" />,
-                title: 'Retorno Mensuravel',
-                description: 'Acompanhe o impacto de seu investimento através de relatorios detalhados.'
+                title: 'Retorno Mensurável',
+                description: 'Acompanhe o impacto de seu investimento através de relatórios detalhados.'
               },
               {
                 icon: <Lightbulb className="w-8 h-8" />,
                 title: 'Inovação',
-                description: 'Seja parte de uma iniciativa inovadora que reimagina a educacao musical.'
+                description: 'Seja parte de uma iniciativa inovadora que reimagina a educação musical.'
               },
               {
                 icon: <Handshake className="w-8 h-8" />,
-                title: 'Parcerias Estrátegicas',
+                title: 'Parcerias Estratégicas',
                 description: 'Conecte-se com outras empresas e investidores alinhados com seus valores.'
               }
             ].map((benefit, index) => (
@@ -152,7 +152,7 @@ export default function Partnership() {
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-4xl font-bold text-foreground mb-4">Histórias de Sucesso</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Conheca as vidas transformadas pelo apoio de nossos parceiros.
+              Conheça as vidas transformadas pelo apoio de nossos parceiros.
             </p>
           </div>
 
@@ -160,11 +160,11 @@ export default function Partnership() {
             {[
               {
                 name: 'Lucas Silva',
-                story: 'Aos 16 anos, Lucas sonhava em ser baterista profissional. Com o apoio de nossos parceiros, conseguiu sua primeira bateria e agora e instrutor em nossa escola.'
+                story: 'Aos 16 anos, Lucas sonhava em ser baterista profissional. Com o apoio de nossos parceiros, conseguiu sua primeira bateria e agora é instrutor em nossa escola.'
               },
               {
                 name: 'Maria Santos',
-                story: 'Descobriu sua paixao pela musica atraves de nossas aulas. Hoje estuda em uma universidade renomada de musica com bolsa integral.'
+                story: 'Descobriu sua paixão pela música através de nossas aulas. Hoje estuda em uma universidade renomada de música com bolsa integral.'
               }
             ].map((story, index) => (
               <div

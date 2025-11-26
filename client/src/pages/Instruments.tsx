@@ -3,7 +3,7 @@ import { Link } from 'wouter';
 import { useContext } from 'react';
 import AuthContext from '@/contexts/AuthContext';
 import { useLocation } from 'wouter';
-import { Music, Headphones, Volume2, Wind, Zap, Piano, Guitar, Microwave, Mic, Drum } from 'lucide-react';
+import { Music, Headphones, Volume2, Wind, Zap, Piano, Guitar, Mic, Drum } from 'lucide-react';
 
 export default function Instruments() {
   const instruments = [
@@ -15,33 +15,33 @@ export default function Instruments() {
     },
     {
       name: 'Guitarra',
-      icon: <Zap className="w-12 h-12" />,
-      description: 'Desde acordes basicos ate tecnicas avancadas. Para todos os estilos musicais.',
-      details: 'Aulas de teoria musical, improvisacao e composicao.'
+      icon: <Guitar className="w-12 h-12" />,
+      description: 'Desde acordes básicos até técnicas avançadas. Para todos os estilos musicais.',
+      details: 'Aulas de teoria musical, improvisação e composição.'
     },
     {
       name: 'Teclado',
       icon: <Piano className="w-12 h-12" />,
-      description: 'Explore harmonia e melodia com o teclado. Ideal para aprender musica.',
-      details: 'Aulas de piano, sintetizador e producao musical.'
+      description: 'Explore harmonia e melodia com o teclado. Ideal para aprender música.',
+      details: 'Aulas de piano, sintetizador e produção musical.'
     },
     {
       name: 'Violao',
       icon: <Guitar className="w-12 h-12" />,
-      description: 'Instrumento versatil para musica classica, popular e contemporanea.',
-      details: 'Aulas de fingerstyle, acordes e tecnicas de performance.'
+      description: 'Instrumento versátil para música clássica, popular e contemporânea.',
+      details: 'Aulas de fingerstyle, acordes e técnicas de performance.'
     },
     {
       name: 'Baixo',
       icon: <Volume2 className="w-12 h-12" />,
-      description: 'Seja a base ritmca de qualquer banda. Aprenda groove e sincronizacao.',
-      details: 'Aulas de linhas de baixo, sincronizacao e performance em grupo.'
+      description: 'Seja a base rítmica de qualquer banda. Aprenda groove e sincronização.',
+      details: 'Aulas de linhas de baixo, sincronização e performance em grupo.'
     },
     {
-      name: 'Vocalizacao',
+      name: 'Vocalização',
       icon: <Mic className="w-12 h-12" />,
-      description: 'Desenvolva sua voz e aprenda tecnicas vocais profissionais.',
-      details: 'Aulas de respiracao, aquecimento e interpretacao musical.'
+      description: 'Desenvolva sua voz e aprenda técnicas vocais profissionais.',
+      details: 'Aulas de respiração, aquecimento e interpretação musical.'
     }
   ];
 
@@ -88,18 +88,18 @@ export default function Instruments() {
       <section className="py-20 bg-card border-y border-border">
         <div className="container">
           <div className="text-center mb-16 animate-fadeInUp">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Por que aprender musica?</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Por que aprender música?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Musica transforma vidas, desenvolve habilidades e cria oportunidades.
+              Música transforma vidas, desenvolve habilidades e cria oportunidades.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              { title: 'Desenvolvimento Cognitivo', desc: 'Melhora memoria, concentracao e habilidades de resolucao de problemas.' },
-              { title: 'Expressao Criativa', desc: 'Explore sua criatividade e expresse emocoes atraves da musica.' },
-              { title: 'Disciplina e Paciencia', desc: 'Aprenda a estabelecer metas e trabalhar para alcanc-las.' },
-              { title: 'Conexoes Sociais', desc: 'Faca amigos e colabore com outros musicos em nossa comunidade.' }
+              { title: 'Desenvolvimento Cognitivo', desc: 'Melhora memória, concentração e habilidades de resolução de problemas.' },
+              { title: 'Expressão Criativa', desc: 'Explore sua criatividade e expresse emoções através da música.' },
+              { title: 'Disciplina e Paciência', desc: 'Aprenda a estabelecer metas e trabalhar para alcançá-las.' },
+              { title: 'Conexões Sociais', desc: 'Faça amigos e colabore com outros músicos em nossa comunidade.' }
             ].map((benefit, index) => (
               <div
                 key={index}

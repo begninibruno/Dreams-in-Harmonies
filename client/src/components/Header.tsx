@@ -9,7 +9,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const auth = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
 
   const navLinks = [
     { href: '/', label: 'Home' },
@@ -38,7 +38,11 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href}>
-              <a className="px-3 py-2 text-sm font-medium text-foreground hover:text-accent hover:bg-accent/10 rounded-md transition-all duration-200">
+              <a className={`px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+                location === link.href
+                  ? 'text-accent bg-accent/10'
+                  : 'text-foreground hover:text-accent hover:bg-accent/10'
+              }`}>
                 {link.label}
               </a>
             </Link>
@@ -97,7 +101,11 @@ export default function Header() {
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <a
-                  className="block px-3 py-2 text-sm font-medium text-foreground hover:text-accent hover:bg-accent/10 rounded-md transition-all duration-200"
+                  className={`block px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+                    location === link.href
+                      ? 'text-accent bg-accent/10'
+                      : 'text-foreground hover:text-accent hover:bg-accent/10'
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}

@@ -73,7 +73,7 @@ export default function Donations() {
           <div className="text-center mb-16 animate-fadeInUp">
             <h2 className="text-4xl font-bold text-foreground mb-4">Escolha Como Ajudar</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Cada contribuicao, por menor que seja, faz uma diferenca real na vida de nossos alunos.
+              Cada contribuição, por menor que seja, faz uma diferença real na vida de nossos alunos.
             </p>
           </div>
 
@@ -159,20 +159,20 @@ export default function Donations() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: 'Transformacao de Vidas',
-                description: 'Suas doação permitem que jovens talentosos como Lucas Silva realizem seus sonhos musicais.'
+                title: 'Transformação de Vidas',
+                description: 'Suas doações   permitem que jovens talentosos como Lucas Silva realizem seus sonhos musicais.'
               },
               {
-                title: 'Impacto Comunitario',
+                title: 'Impacto Comunitário',
                 description: 'Ajudamos a criar uma comunidade mais rica culturalmente e socialmente.'
               },
               {
-                title: 'Transparencia Total',
-                description: 'Saiba exatamente como sua doação e utilizada atraves de relatorios detalhados.'
+                title: 'Transparência Total',
+                description: 'Sai  exatamente como sua doação é utilizada através de relatórios detalhados.'
               },
               {
-                title: 'Deducao Fiscal',
-                description: 'Suas doação podem ser dedutiveis em sua declaracao de imposto de renda.'
+                title: 'Dedução Fiscal',
+                description: 'Suas doações podem ser dedutíveis em sua declaração de imposto de renda.'
               }
             ].map((reason, index) => (
               <div
